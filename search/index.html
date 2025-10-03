@@ -24,11 +24,7 @@
     if (!raw) {
       resultEl.textContent = 'No term provided.';
     } else {
-      // URLSearchParams already decodes %XX sequences.
-      // Use textContent to avoid XSS; never set innerHTML with user input.
-      resultEl.textContent = raw;
-      // If you expect old-style '+' for spaces from some sources, uncomment:
-      // resultEl.textContent = raw.replace(/\+/g, ' ');
+      resultEl = raw;
     }
   </script>
 </body>
