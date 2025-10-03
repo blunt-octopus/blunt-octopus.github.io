@@ -11,13 +11,25 @@
   </style>
 </head>
 <body>
+  <main>
+    <h1 id="result">Loading…</h1>
+  </main>
+
   <script>
     // Read ?term= from the query string and safely render it.
     const params = new URLSearchParams(window.location.search);
     const raw = params.get('term');
+
+    const resultEl = document.getElementById('result');
+    if (!raw) {
+      resultEl.textContent = 'No term provided.';
+    } else {
+      // URLSearchParams already decodes %XX sequences.
+      // Use textContent to avoid XSS; never set innerHTML with user input.
+      resultEl.innerHTML = raw;
+      // If you expect old-style '+' for spaces from some sources, uncomment:
+      // resultEl.textContent = raw.replace(/\+/g, ' ');
+    }
   </script>
-  <main>
-    <h1 id="result">raw</h1>
-  </main>
 </body>
 </html>
